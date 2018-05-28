@@ -10,6 +10,7 @@
 // Angular imports
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 
 // Angular Material imports
 import { MaterialModule } from '../material.module';
@@ -21,10 +22,11 @@ import { MaterialModule } from '../material.module';
 import { ProjectListComponent } from './project-list/project-list.component';
 import { ProjectDetailComponent } from './project-detail/project-detail.component';
 import { ProjectSettingComponent } from './project-setting/project-setting.component';
+import { ProjectRenameDialogComponent } from './project-setting/project-setting.component';
 
-import { ProjectRenameDialog } from './project-setting/project-setting.component';
 // Odin Services imports
-// nothing here
+import { ProjectService } from './project.service';
+
 
 
 @NgModule({
@@ -32,11 +34,12 @@ import { ProjectRenameDialog } from './project-setting/project-setting.component
         ProjectListComponent,
         ProjectDetailComponent,
         ProjectSettingComponent,
-        ProjectRenameDialog,
+        ProjectRenameDialogComponent,
     ],
-    entryComponents: [ProjectRenameDialog],
+    entryComponents: [ProjectRenameDialogComponent],
     imports: [
         CommonModule,
+        FormsModule,
         MaterialModule,
         // MatToolbarModule,
         // MatInputModule,
@@ -44,8 +47,10 @@ import { ProjectRenameDialog } from './project-setting/project-setting.component
         // MatDividerModule,
         // MatTabsModule,
     ],
-    providers: [],
-    exports: [        
+    providers: [
+        ProjectService,
+    ],
+    exports: [
         ProjectListComponent,
         ProjectDetailComponent,
     ],
