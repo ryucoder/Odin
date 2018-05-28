@@ -1,0 +1,29 @@
+<div class="panel">
+
+    <div class="row">
+        <div class=col-4>
+            <mat-toolbar> Project - {{ projectService.selectedProject.name }} 
+                - {{ projectService.selectedProject.id }} </mat-toolbar>
+        </div>
+    </div>
+    
+    <div>
+        <h3>Rename Project</h3>
+        
+        <button mat-raised-button color="accent" (click)="openDialog()">
+            Rename
+        </button>
+
+    </div>
+    
+    <mat-divider></mat-divider>
+    
+    <div>
+        <h3>Delete Project</h3>
+        <form class="example-form">
+            <button mat-raised-button color="warn" type="submit">Delete</button>
+        </form>
+
+    </div>
+
+</div>

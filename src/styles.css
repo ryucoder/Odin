@@ -1,1 +1,21 @@
 /* You can add global styles to this file, and also import other style files */
+@import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
+@import '~bootstrap/dist/css/bootstrap.min.css';
+
+body { 
+    background-color: #303030;
+}
+
+div.panel {
+    border: 1px solid rgba(0,0,0,.03);
+    box-shadow: 0 2px 2px rgba(0,0,0,.24), 0 0 2px rgba(0,0,0,.12);
+}
+
+.mat-odin-button {
+    min-width: 40px !important;
+    padding: 0 6px !important;
+}
+
+.mat-odin-list {
+    /* padding: 0 10px !important;    */
+}
