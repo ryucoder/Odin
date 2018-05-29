@@ -4,7 +4,6 @@
 // Odin Modules imports
 // Odin Components imports
 // Odin Services imports
-// nothing here // for empty imports
 
 
 // Angular imports
@@ -19,6 +18,7 @@ import { MaterialModule } from './material.module';
 
 // Odin Modules imports
 import { ProjectModule } from './project/project.module';
+import { OdinRouterModule } from './odin.router.module';
 
 // Odin Components imports
 import { AppComponent } from './app.component';
@@ -30,19 +30,6 @@ import { ProjectSettingComponent } from './project/project-setting/project-setti
 import { ProjectService } from './project/project.service';
 
 
-const appRoutes = [
-    // { path: '', redirectTo: '/home', pathMatch: 'full'  },
-    { path: 'home', component: AppComponent },
-    { path: 'project/detail/:id', component: ProjectDetailComponent },
-    { path: 'project/settings/:id', component: ProjectSettingComponent },
-    // {
-    //     path: 'heroes',
-    //     component: HeroListComponent,
-    //     data: { title: 'Heroes List' }
-    // },
-    // { path: '**', component: PageNotFoundComponent }
-];
-
 @NgModule({
   declarations: [
     AppComponent
@@ -52,13 +39,13 @@ const appRoutes = [
     BrowserModule,
     BrowserAnimationsModule,
     HttpClientModule,
-    RouterModule.forRoot(appRoutes),
     
     // Angular Material modules
     MaterialModule,
 
     // Odin modules
-    ProjectModule,
+    ProjectModule, 
+    OdinRouterModule,
 
 ],
   providers: [

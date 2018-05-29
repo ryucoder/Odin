@@ -1,0 +1,13 @@
+<h1 mat-dialog-title color="primary">Delete Project</h1>
+<div>
+  <form>
+    <div mat-dialog-content>
+      <p>Are you sure you want to delete the project?</p>
+    </div>
+    <div mat-dialog-actions>
+      <button mat-raised-button color="warn" [mat-dialog-close]="data.animal">Delete</button>
+      <button mat-raised-button color="basic" (click)="onCancel()" cdkFocusInitial>Cancel</button>
+    </div>
+  </form>
+</div>
+

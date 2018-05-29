@@ -4,7 +4,6 @@
 // Odin Modules imports
 // Odin Components imports
 // Odin Services imports
-// nothing here
 
 
 // Angular imports
@@ -16,13 +15,13 @@ import { FormsModule } from '@angular/forms';
 import { MaterialModule } from '../material.module';
 
 // Odin Modules imports
-// nothing here
 
 // Odin Components imports
 import { ProjectListComponent } from './project-list/project-list.component';
 import { ProjectDetailComponent } from './project-detail/project-detail.component';
 import { ProjectSettingComponent } from './project-setting/project-setting.component';
-import { ProjectRenameDialogComponent } from './project-setting/project-setting.component';
+import { ProjectRenameDialogComponent } from './project-setting/project-rename-dialog/project-rename-dialog.component';
+import { ProjectDeleteDialogComponent } from './project-setting/project-delete-dialog/project-delete-dialog.component';
 
 // Odin Services imports
 import { ProjectService } from './project.service';
@@ -35,17 +34,16 @@ import { ProjectService } from './project.service';
         ProjectDetailComponent,
         ProjectSettingComponent,
         ProjectRenameDialogComponent,
+        ProjectDeleteDialogComponent,
     ],
-    entryComponents: [ProjectRenameDialogComponent],
+    entryComponents: [
+        ProjectRenameDialogComponent,
+        ProjectDeleteDialogComponent,
+    ],
     imports: [
         CommonModule,
         FormsModule,
         MaterialModule,
-        // MatToolbarModule,
-        // MatInputModule,
-        // MatButtonModule,
-        // MatDividerModule,
-        // MatTabsModule,
     ],
     providers: [
         ProjectService,

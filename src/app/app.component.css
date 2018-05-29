@@ -2,12 +2,15 @@
 
 mat-sidenav-container {
     background-color: #303030;
+    /* background-color: white; */
     padding-top: 1%;
     min-height: 85vh;
 }
 
 mat-sidenav-content {
     background-color: white;
+    border: 1px solid rgba(0, 0, 0, .03);
+    box-shadow: 0 2px 2px rgba(0, 0, 0, .24), 0 0 2px rgba(0, 0, 0, .12);
 }
 
 mat-sidenav {
@@ -18,4 +21,6 @@ mat-sidenav {
 mat-list {
     background-color: white;
 }
+
+
 

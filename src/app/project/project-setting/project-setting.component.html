@@ -4,9 +4,7 @@
         <div class=col-4>
             <mat-toolbar> 
                 <h1>
-
-                    Project - {{ projectService.selectedProject.name }} 
-                    - {{ projectService.selectedProject.id }} 
+                    Project Settings - {{ projectService.selectedProject.name }} 
                 </h1>
             </mat-toolbar>
         </div>
@@ -15,7 +13,7 @@
     <div>
         <h5>Rename Project</h5>
         
-        <button mat-raised-button color="accent" (click)="openDialog()">
+        <button mat-raised-button color="accent" (click)="openRenameDialog()">
             Rename
         </button>
 
@@ -25,9 +23,10 @@
     
     <div>
         <h5>Delete Project</h5>
-        <form class="example-form">
-            <button mat-raised-button color="warn" type="submit">Delete</button>
-        </form>
+
+        <button mat-raised-button color="warn" (click)="openDeleteDialog()">
+            Delete
+        </button>
 
     </div>
 

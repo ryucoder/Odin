@@ -1,6 +1,9 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 
 import { ProjectService } from './project/project.service';
+import { ProjectRenameDialogComponent } from './project/project-setting/project-rename-dialog/project-rename-dialog.component';
+
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 
 
 @Component({
@@ -13,7 +16,11 @@ export class AppComponent implements OnInit, OnDestroy {
     projectList = undefined;
     projectServiceSub = undefined;
 
-    constructor(private projectService: ProjectService) { }
+    isCreate = true;
+    isEdit = false;
+
+    constructor(private projectService: ProjectService,
+    public dialog: MatDialog) { }
 
     ngOnInit() {
         this.projectServiceSub = this.projectService.getProjectList()
@@ -36,7 +43,29 @@ export class AppComponent implements OnInit, OnDestroy {
         this.projectServiceSub.unsubscribe();
     }
 
+    openCreateDialog() {
+        console.log("create");
+        
+    }
+
     updateSelectedProject(project) {
         this.projectService.selectedProject = project;
     }
+
+    openCreateDialog() {
+        let dialogRef = this.dialog.open(ProjectRenameDialogComponent, {
+            width: '450px',
+            data: { isEdit: this.isEdit, isCreate: this.isCreate }
+        });
+
+        dialogRef.afterClosed()
+            .subscribe(
+                result => {
+                    console.log('The dialog was closed');
+                    console.log(result);
+                    this.animal = result;
+                },
+        );
+    }
+
 }
