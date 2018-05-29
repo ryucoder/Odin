@@ -15,16 +15,10 @@ import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 
 // Angular Material imports
-import { MatSidenavModule, MatButtonModule } from '@angular/material';
-import { MatExpansionModule } from '@angular/material/expansion';
-import { MatToolbarModule } from '@angular/material/toolbar';
-import { MatListModule } from '@angular/material/list';
-import { MatTabsModule } from '@angular/material/tabs';
-import { MatInputModule } from '@angular/material/input';
+import { MaterialModule } from './material.module';
 
 // Odin Modules imports
 import { ProjectModule } from './project/project.module';
-import { MaterialModule } from './material.module';
 
 // Odin Components imports
 import { AppComponent } from './app.component';
@@ -59,17 +53,10 @@ const appRoutes = [
     BrowserAnimationsModule,
     HttpClientModule,
     RouterModule.forRoot(appRoutes),
-
-    // Material modules
-    // MatSidenavModule,
-    // MatToolbarModule,
-    // MatListModule,
-    // MatTabsModule,
-    // MatButtonModule,
-    // MatExpansionModule,
-    // MatInputModule,
-    MaterialModule,
     
+    // Angular Material modules
+    MaterialModule,
+
     // Odin modules
     ProjectModule,
 

@@ -11,7 +11,6 @@ import { ProjectService } from './project/project.service';
 export class AppComponent implements OnInit, OnDestroy {
     title = 'app';
     projectList = undefined;
-    selectedProject = undefined; // remove from here, move to ProjectService
     projectServiceSub = undefined;
 
     constructor(private projectService: ProjectService) { }
@@ -22,7 +21,6 @@ export class AppComponent implements OnInit, OnDestroy {
                                             data => {
                                                 this.projectList = data;
                                                 this.projectService.selectedProject = this.projectList[0];
-                                                this.selectedProject = this.projectService.selectedProject;
                                             },
                                             error => console.log(error),
                                             () => {
@@ -39,7 +37,6 @@ export class AppComponent implements OnInit, OnDestroy {
     }
 
     updateSelectedProject(project) {
-        this.selectedProject = project;
         this.projectService.selectedProject = project;
     }
 }

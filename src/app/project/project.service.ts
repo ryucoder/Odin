@@ -6,11 +6,12 @@ import { HttpClient } from '@angular/common/http';
 })
 export class ProjectService {
 
-    selectedProject = {
-        "id": 1,
-        "name": "Odin",
-        "created": "2018-05-27T06:59:22.886644Z"
-    }; // shared across all the modules
+    selectedProject = undefined;
+    // selectedProject = {
+    //     "id": 1,
+    //     "name": "Odin",
+    //     "created": "2018-05-27T06:59:22.886644Z"
+    // }; // shared across all the modules
     
     project_list_url = "api/project/list";
     project_detail_url = "api/project/detail";

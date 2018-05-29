@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
 import { ProjectService } from '../project.service';
@@ -9,10 +9,10 @@ import { ProjectService } from '../project.service';
   templateUrl: './project-detail.component.html',
   styleUrls: ['./project-detail.component.css'],
 })
-export class ProjectDetailComponent implements OnInit {
+export class ProjectDetailComponent implements OnInit, OnDestroy {
 
     id = undefined;
-    projectServiceSub;
+    projectServiceSub = undefined;
 
     constructor(public projectService: ProjectService,
         public route: ActivatedRoute) { 
@@ -21,31 +21,31 @@ export class ProjectDetailComponent implements OnInit {
 
         ngOnInit() {
             this.route.paramMap
-                        .subscribe(
-                            data => {
-                                
-                                this.id = data["params"]["id"]
-                                this.projectServiceSub = this.projectService.getProjectDetail(this.id)
-                            }
-                        );
+                .subscribe(
+                    data => {
                         
-        this.projectServiceSub 
-        // = this.projectService.getProjectDetail(this.id)
-            .subscribe(
-                data => {
-                    console.log(data);
-                    console.log(typeof(data));
-                    this.projectService.selectedProject = data;
-                },
-                
-                error => {
-                    console.log(error);
-                },
+                        this.id = data["params"]["id"]
+                        this.projectServiceSub = this.projectService.getProjectDetail(this.id)
+                                                .subscribe(
+                                                    data => {
+                                                        this.projectService.selectedProject = data;
+                                                    },
 
-                () => {
-                    console.log("completed");
-                }
-            );
+                                                    error => {
+                                                        console.log(error);
+                                                    },
+
+                                                    () => {
+                                                        console.log("completed");
+                                                    }
+                                                );
+                    }
+                );
+                
+        
         }
 
+        ngOnDestroy() {
+            this.projectServiceSub.unsubscribe();
+        }
 }
