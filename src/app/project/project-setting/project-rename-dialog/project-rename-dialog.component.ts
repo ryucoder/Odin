@@ -33,9 +33,24 @@ export class ProjectRenameDialogComponent implements OnInit {
                     // console.log(data);
                     // show tooltip to user that new project is created.
                     // redirect to list page
+
+                }
+            });
+    }
+
+    updateProject() {
+        // if name is valid
+        this.projectService.updateProject(3, "dragon")
+            .subscribe({
+                data => {
+                    // console.log(data);
+                    // show tooltip to user that new project is created.
+                    // redirect to list page
+                    console.log("DONE");
                     
                 }
-            })
+            });
+
     }
 
     onCancel(): void {

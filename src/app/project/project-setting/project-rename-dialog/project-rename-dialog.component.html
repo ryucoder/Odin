@@ -13,7 +13,7 @@
             </div>
 
             <div mat-dialog-actions>
-                <button mat-raised-button color="accent" [mat-dialog-close]="data.animal">Rename</button>
+                <button mat-raised-button color="accent" (click)="updateProject()">Rename</button>
                 <button mat-raised-button color="basic" (click)="onCancel()" cdkFocusInitial>Cancel</button>
             </div>
         </form>

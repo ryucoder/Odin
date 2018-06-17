@@ -12,6 +12,7 @@ export class ProjectService {
     project_list_url = "api/project/list";
     project_detail_url = "api/project/detail";
     project_update_url = "api/project/update";
+    project_delete_url = "api/project/delete";
     
     constructor(private http: HttpClient) { }
 
@@ -27,7 +28,11 @@ export class ProjectService {
         return this.http.get(this.project_detail_url + "/" + id + "/");
     }
 
-    renameProject(id, name) {
-        return this.http.put(this.project_update_url + id, { name: name });
+    updateProject(id, name) {
+        return this.http.put(this.project_update_url + "/" + id + "/", { name: name });
+    }
+
+    deleteProject(id) {
+        return this.http.delete(this.project_delete_url + id);
     }
 }
