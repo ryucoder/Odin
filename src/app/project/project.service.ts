@@ -7,41 +7,19 @@ import { HttpClient } from '@angular/common/http';
 export class ProjectService {
 
     selectedProject = undefined;
-    // selectedProject = {
-    //     "id": 1,
-    //     "name": "Odin",
-    //     "created": "2018-05-27T06:59:22.886644Z"
-    // }; // shared across all the modules
     
+    project_create_url = "api/project/create";
     project_list_url = "api/project/list";
     project_detail_url = "api/project/detail";
     project_update_url = "api/project/update";
     
-    // projectList = [
-    //     {
-    //         "id": 1,
-    //         "name": "Odin",
-    //         "created": "2018-05-27T06:59:22.886644Z"
-    //     },
-    //     {
-    //         "id": 3,
-    //         "name": "Ryu",
-    //         "created": "2018-05-27T18:35:59.997639Z"
-    //     },
-    //     {
-    //         "id": 4,
-    //         "name": "Angular",
-    //         "created": "2018-05-27T18:36:10.555232Z"
-    //     },
-    // ]; // dummt data for testing
-
-
     constructor(private http: HttpClient) { }
 
+    createProject(name) {
+        return this.http.post(this.project_create_url + "/", { name: name });
+    }
+
     getProjectList() {
-        
-        // return this.projectList;
-        // return this.http.get(this.project_list_url);
         return this.http.get(this.project_list_url + "/");
     } 
 
@@ -50,6 +28,6 @@ export class ProjectService {
     }
 
     renameProject(id, name) {
-        return this.http.put(this.project_update_url + id, {name: name });
+        return this.http.put(this.project_update_url + id, { name: name });
     }
 }

@@ -36,7 +36,8 @@
             </div>
     
             <div mat-dialog-actions>
-                <button mat-raised-button color="primary" [mat-dialog-close]="data.animal">Create</button>
+                <button mat-raised-button color="primary" *ngIf="!isCreated" (click)=createProject()>Create</button>
+                <button mat-raised-button color="primary" *ngIf="isCreated" [mat-dialog-close]="data.animal">Close</button>
                 <button mat-raised-button color="basic" (click)="onCancel()" cdkFocusInitial>Cancel</button>
             </div>
         </form>
