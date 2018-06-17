@@ -26,6 +26,10 @@ export class AppComponent implements OnInit, OnDestroy {
                                         .subscribe(
                                             data => {
                                                 this.projectList = data;
+                                                console.log('\n');
+                                                console.log(data);
+                                                console.log('\n');
+                                                
                                                 this.projectService.selectedProject = this.projectList[0];
                                             },
                                             error => console.log(error),

@@ -41,7 +41,8 @@ export class ProjectService {
     getProjectList() {
         
         // return this.projectList;
-        return this.http.get(this.project_list_url);
+        // return this.http.get(this.project_list_url);
+        return this.http.get(this.project_list_url + "/");
     } 
 
     getProjectDetail(id) {
