@@ -12,7 +12,6 @@ import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit, OnDestroy {
-    title = 'app';
     projectList = undefined;
     projectServiceSub = undefined;
 
@@ -43,11 +42,6 @@ export class AppComponent implements OnInit, OnDestroy {
         this.projectServiceSub.unsubscribe();
     }
 
-    openCreateDialog() {
-        console.log("create");
-        
-    }
-
     updateSelectedProject(project) {
         this.projectService.selectedProject = project;
     }
@@ -63,7 +57,7 @@ export class AppComponent implements OnInit, OnDestroy {
                 result => {
                     console.log('The dialog was closed');
                     console.log(result);
-                    this.animal = result;
+                    // this.animal = result;
                 },
         );
     }
