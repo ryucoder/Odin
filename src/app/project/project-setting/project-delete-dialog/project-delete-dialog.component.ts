@@ -1,19 +1,39 @@
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component, Inject, OnInit, OnDestroy } from '@angular/core';
 
-import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 
+import { ProjectService } from '../../project.service';
 
 @Component({
   selector: 'app-project-delete-dialog',
   templateUrl: './project-delete-dialog.component.html',
   styleUrls: ['./project-delete-dialog.component.css']
 })
-export class ProjectDeleteDialogComponent implements OnInit {
+export class ProjectDeleteDialogComponent implements OnInit, OnDestroy {
+    
+    deleteSub = undefined;
 
-    constructor(public dialogRef: MatDialogRef<ProjectDeleteDialogComponent>,
+    constructor(private projectService: ProjectService,
+        public dialogRef: MatDialogRef<ProjectDeleteDialogComponent>,
         @Inject(MAT_DIALOG_DATA) public data: any) { }
 
     ngOnInit() {
+    
+    }
+    
+
+    ngOnDestroy() {
+        this.deleteSub.unsubscribe();
+    }
+
+    deleteProject() {
+       this.deleteSub = this.projectService.deleteProject(4)
+                            .subscribe({
+                                data => {
+                                    console.log(data);
+                                    
+                                }
+                            }); 
     }
 
     onCancel(): void {

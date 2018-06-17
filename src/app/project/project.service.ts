@@ -33,6 +33,6 @@ export class ProjectService {
     }
 
     deleteProject(id) {
-        return this.http.delete(this.project_delete_url + id);
+        return this.http.delete(this.project_delete_url + "/" + id + "/");
     }
 }

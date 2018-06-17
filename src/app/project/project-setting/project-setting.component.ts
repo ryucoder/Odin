@@ -1,6 +1,6 @@
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 
-import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+import { MatDialog } from '@angular/material';
 
 import { ProjectService } from '../project.service';
 import { ProjectRenameDialogComponent } from './project-rename-dialog/project-rename-dialog.component';
@@ -12,7 +12,7 @@ import { ProjectDeleteDialogComponent } from './project-delete-dialog/project-de
   templateUrl: './project-setting.component.html',
   styleUrls: ['./project-setting.component.css'],
 })
-export class ProjectSettingComponent implements OnInit {
+export class ProjectSettingComponent implements OnInit, OnDestroy {
     animal: string;
     name: string;
 
@@ -24,6 +24,8 @@ export class ProjectSettingComponent implements OnInit {
                 public dialog: MatDialog ) { }
 
     ngOnInit() {}
+
+    ngOnDestroy() {}
 
     openRenameDialog() {
         let dialogRef = this.dialog.open(ProjectRenameDialogComponent, {

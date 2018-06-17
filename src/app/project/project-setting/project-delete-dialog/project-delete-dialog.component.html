@@ -12,7 +12,7 @@
             </div>
    
             <div mat-dialog-actions>
-                <button mat-raised-button color="warn" [mat-dialog-close]="data.animal">Delete</button>
+                <button mat-raised-button color="warn" (click)="deleteProject()">Delete</button>
                 <button mat-raised-button color="basic" (click)="onCancel()" cdkFocusInitial>Cancel</button>
             </div>
         </form>
