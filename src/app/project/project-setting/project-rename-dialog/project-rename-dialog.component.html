@@ -27,18 +27,22 @@
     <mat-divider> </mat-divider>
     
     <div>
-        <form>
+        <form novalidate [formGroup]="projectCreateForm" (ngSubmit)="onCreateProject()">
             <div mat-dialog-content>
                 <p>Choose a name for the new project</p>
-                <mat-form-field style="width: 100%;">
-                    <input matInput placeholder="Type the name here" name="name" [(ngModel)]="data.animal">
-                </mat-form-field>
+                    <mat-form-field>
+                        <input matInput required placeholder="Type the name here" formControlName="projectName">
+                    </mat-form-field>
             </div>
     
+            <div>
+                <h1> {{ projectCreateForm.controls.projectName.value }} </h1>
+                <h1> Form Valid : {{ projectCreateForm.valid }} </h1>
+            </div>
             <div mat-dialog-actions>
-                <button mat-raised-button color="primary" *ngIf="!isCreated" (click)=createProject()>Create</button>
+                <button mat-raised-button color="primary" *ngIf="!isCreated">Create</button>
                 <button mat-raised-button color="primary" *ngIf="isCreated" [mat-dialog-close]="data.animal">Close</button>
-                <button mat-raised-button color="basic" (click)="onCancel()" cdkFocusInitial>Cancel</button>
+                <button mat-raised-button color="basic" *ngIf="!isCreated" (click)="onCancel()" cdkFocusInitial>Cancel</button>
             </div>
         </form>
     </div>

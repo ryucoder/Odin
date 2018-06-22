@@ -10,6 +10,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
 
 // Angular Material imports
 import { MaterialModule } from '../material.module';
@@ -43,6 +44,7 @@ import { ProjectService } from './project.service';
     imports: [
         CommonModule,
         FormsModule,
+        ReactiveFormsModule,
         MaterialModule,
     ],
     providers: [

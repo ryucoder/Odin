@@ -1,4 +1,5 @@
 import { Component, Inject, OnInit, OnDestroy } from '@angular/core';
+import { FormGroup, FormControl, FormBuilder } from '@angular/forms';
 
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 
@@ -15,13 +16,29 @@ export class ProjectRenameDialogComponent implements OnInit, OnDestroy {
     createSub = undefined;
     updateSub = undefined;
 
+    projectCreateError = undefined;
+    projectCreateForm = undefined;
+
     constructor(private projectService: ProjectService,
+        private formBuilder: FormBuilder,
         public dialogRef: MatDialogRef<ProjectRenameDialogComponent>,
         @Inject(MAT_DIALOG_DATA) public data: any) { }
         
     ngOnInit() {
-        console.log(this.data);
+        // console.log(this.data);
+
+        this.projectCreateForm = new FormGroup({
+            projectName: new FormControl(),
+            // projectName: new FormControl("RyuCoder"),
+        });
         
+        this.projectCreateForm = this.formBuilder.group({
+            projectName: [{ value: "Mr. Turbo", disabled: false}, []]
+        });
+
+
+
+
     }
 
     ngOnDestroy() {
@@ -36,18 +53,35 @@ export class ProjectRenameDialogComponent implements OnInit, OnDestroy {
 
     }
 
-    createProject() {
-        this.isCreated = true;
+    onCreateProject() {
+        console.log("\n");
+        console.log(this.projectCreateForm.controls.projectName.value);
+        console.log("\n");
+        
+        if(this.projectCreateForm.dirty && this.projectCreateForm.valid) {
 
-        // if name is valid
-        this.createSub = this.projectService.createProject("dragon")
+            // Object.assign({}, this.projectName, this.projectCreateForm.value);
+
+            this.createSub = this.projectService.createProject(this.projectCreateForm.controls.projectName.value)
                             .subscribe(
                                 data => {
                                     // console.log(data);
                                     // show tooltip to user that new project is created.
                                     // redirect to list page
+                                    this.projectCreateForm.reset();
+                                },
+                                error => console.log("Create Project Error : " + error);
+                                () => {
+                                    this.isCreated = true;
                                 }
                             );
+
+        } else {
+            this.projectCreateError = true;
+            // Show Error Tooltip of popup
+        }
+
+        
     }
 
     updateProject() {

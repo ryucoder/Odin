@@ -23,11 +23,19 @@ export class ProjectDeleteDialogComponent implements OnInit, OnDestroy {
         this.deleteSub.unsubscribe();
     }
 
-    deleteProject() {
-        this.deleteSub = this.projectService.deleteProject(4)
+    deleteProject(id) {
+        this.deleteSub = this.projectService.deleteProject(id)
                             .subscribe(
                                 data => {
                                     console.log(data);
+                                    // close the dialog
+                                    this.onCancel();
+
+                                    // update the project list array in app component
+                                    // Event emitter concept or subscribe observable in project service
+                                
+                                    // update the selectedProject in projectService
+                                    // redirect to detail page of selectedProject
                                 }
                             ); 
     }
