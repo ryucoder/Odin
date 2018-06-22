@@ -28,7 +28,7 @@ export class ProjectService {
 
 
     getProjectList() {
-        return this.http.get(this.project_list_url + '/' + "324")
+        return this.http.get(this.project_list_url + '/')
             .pipe(
                 retry(2),
                 catchError(
