@@ -31,8 +31,10 @@ export class AppComponent implements OnInit, OnDestroy {
                                                 console.log('\n');
                                                 
                                                 this.projectService.selectedProject = this.projectList[0];
+                                                console.log(this.projectService.selectedProject);
+                                                console.log('\n');
                                             },
-                                            error => console.log(error),
+                                            error => console.log("My Error " + error),
                                             () => {
                                                 console.log('completed');
                                             }

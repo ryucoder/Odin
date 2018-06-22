@@ -13,19 +13,29 @@ import { ProjectDeleteDialogComponent } from './project-delete-dialog/project-de
   styleUrls: ['./project-setting.component.css'],
 })
 export class ProjectSettingComponent implements OnInit, OnDestroy {
-    animal: string;
-    name: string;
 
     isCreate = false;
     isEdit = true;
     
+    renameSub = undefined;
+    deleteSub = undefined;
 
     constructor(private projectService: ProjectService,
                 public dialog: MatDialog ) { }
 
     ngOnInit() {}
 
-    ngOnDestroy() {}
+    ngOnDestroy() {
+
+        if (this.renameSub) {
+            this.renameSub.unsubscribe();
+        }
+
+        if (this.deleteSub) {
+            this.deleteSub.unsubscribe();
+        }
+
+    }
 
     openRenameDialog() {
         let dialogRef = this.dialog.open(ProjectRenameDialogComponent, {
@@ -33,31 +43,27 @@ export class ProjectSettingComponent implements OnInit, OnDestroy {
             data: { isEdit: this.isEdit, isCreate: this.isCreate }
         });
 
-        dialogRef.afterClosed()
-                    .subscribe(
-                        result => {
-                            console.log('The dialog was closed');
-                            console.log(result);
-                            this.animal = result;
-                        },
-                    );
+        this.renameSub = dialogRef.afterClosed()
+                            .subscribe(
+                                result => {
+                                    console.log('The dialog was closed');
+                                    console.log(result);
+                                },
+                            );
     }
 
     openDeleteDialog() {
 
         let dialogRef = this.dialog.open(ProjectDeleteDialogComponent, {
             width: '450px',
-            data: { name: this.name, animal: this.animal }
         });
 
-        dialogRef.afterClosed()
-                    .subscribe(
-                        result => {
-                            console.log('The dialog was closed');
-                            console.log(result);
-                            this.animal = result;
-                        },
-                    );
-
+        this.deleteSub = dialogRef.afterClosed()
+                            .subscribe(
+                                result => {
+                                    console.log('The dialog was closed');
+                                    console.log(result);
+                                },
+                            );
     }
 }

@@ -1,4 +1,4 @@
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component, Inject, OnInit, OnDestroy } from '@angular/core';
 
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 
@@ -9,9 +9,11 @@ import { ProjectService } from '../../project.service';
   templateUrl: './project-rename-dialog.component.html',
   styleUrls: ['./project-rename-dialog.component.css']
 })
-export class ProjectRenameDialogComponent implements OnInit {
+export class ProjectRenameDialogComponent implements OnInit, OnDestroy {
 
     isCreated = false;
+    createSub = undefined;
+    updateSub = undefined;
 
     constructor(private projectService: ProjectService,
         public dialogRef: MatDialogRef<ProjectRenameDialogComponent>,
@@ -22,34 +24,40 @@ export class ProjectRenameDialogComponent implements OnInit {
         
     }
 
+    ngOnDestroy() {
+
+        if (this.createSub) {
+            this.createSub.unsubscribe();
+        }
+
+        if (this.updateSub) {
+            this.updateSub.unsubscribe();
+        }
+
+    }
 
     createProject() {
         this.isCreated = true;
 
         // if name is valid
-        this.projectService.createProject("dragon")
-            .subscribe({
-                data => {
-                    // console.log(data);
-                    // show tooltip to user that new project is created.
-                    // redirect to list page
-
-                }
-            });
+        this.createSub = this.projectService.createProject("dragon")
+                            .subscribe(
+                                data => {
+                                    // console.log(data);
+                                    // show tooltip to user that new project is created.
+                                    // redirect to list page
+                                }
+                            );
     }
 
     updateProject() {
-        // if name is valid
-        this.projectService.updateProject(3, "dragon")
-            .subscribe({
-                data => {
-                    // console.log(data);
-                    // show tooltip to user that new project is created.
-                    // redirect to list page
-                    console.log("DONE");
-                    
-                }
-            });
+
+        this.updateSub = this.projectService.updateProject(3, "dragon")
+                            .subscribe(
+                                data => {
+                                    console.log("DONE");
+                                }
+                            );
 
     }
 

@@ -17,23 +17,19 @@ export class ProjectDeleteDialogComponent implements OnInit, OnDestroy {
         public dialogRef: MatDialogRef<ProjectDeleteDialogComponent>,
         @Inject(MAT_DIALOG_DATA) public data: any) { }
 
-    ngOnInit() {
-    
-    }
-    
+    ngOnInit() { }
 
     ngOnDestroy() {
         this.deleteSub.unsubscribe();
     }
 
     deleteProject() {
-       this.deleteSub = this.projectService.deleteProject(4)
-                            .subscribe({
+        this.deleteSub = this.projectService.deleteProject(4)
+                            .subscribe(
                                 data => {
                                     console.log(data);
-                                    
                                 }
-                            }); 
+                            ); 
     }
 
     onCancel(): void {
