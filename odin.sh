@@ -1,15 +1,17 @@
 #!/bin/bash
 
 # Use absolute path
-# Find a way to read th username dynamically and add it below paths
-PROJECTS="/home/ryucoder/Desktop/Projects/"
-ANGULAR="/home/ryucoder/Desktop/Projects/Odin-angular/"
-DJANGO="/home/ryucoder/Desktop/Projects/Odin-django/"
-ODIN="/home/ryucoder/Desktop/Projects/Odin.code-workspace"
+PROJECTS="/home/$USER/Desktop/Projects/"
+ANGULAR="/home/$USER/Desktop/Projects/Odin-angular/"
+DJANGO="/home/$USER/Desktop/Projects/Odin-django/"
+ODIN="/home/$USER/Desktop/Projects/Odin.code-workspace"
 
+
+# Opens the VS Code Text Editor
 code $ODIN
 
-konsole --hold --new-tab -p tabtitle=Angular --workdir=$ANGULAR &
-konsole --hold --new-tab -p tabtitle=Angular-Server --workdir=$ANGULAR -e "npm start"  &
-konsole --hold --new-tab -p tabtitle=Django --workdir=$DJANGO &
-konsole --hold --new-tab -p tabtitle=Django-Server --workdir=$DJANGO -e "python3 manage.py runserver" &
+
+konsole --new-tab --hold -p tabtitle=Angular --workdir=$ANGULAR &
+konsole --new-tab --hold -p tabtitle=Angular-Server --workdir=$ANGULAR -e bash -c "npm start; bash"   &
+konsole --new-tab --hold -p tabtitle=Django --workdir=$DJANGO &
+konsole --new-tab --hold -p tabtitle=Django-Server --workdir=$DJANGO -e bash -c "python3 manage.py runserver; bash" &
