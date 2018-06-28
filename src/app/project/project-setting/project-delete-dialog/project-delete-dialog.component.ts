@@ -1,4 +1,5 @@
 import { Component, Inject, OnInit, OnDestroy } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 
@@ -14,13 +15,17 @@ export class ProjectDeleteDialogComponent implements OnInit, OnDestroy {
     deleteSub = undefined;
 
     constructor(private projectService: ProjectService,
-        public dialogRef: MatDialogRef<ProjectDeleteDialogComponent>,
-        @Inject(MAT_DIALOG_DATA) public data: any) { }
+        public deleteDialog: MatDialogRef<ProjectDeleteDialogComponent>,
+        @Inject(MAT_DIALOG_DATA) public data: any,
+        private router: Router ) { }
 
     ngOnInit() { }
 
     ngOnDestroy() {
-        this.deleteSub.unsubscribe();
+
+        if (this.deleteSub) {
+            this.deleteSub.unsubscribe();
+        }
     }
 
     deleteProject(id) {
@@ -33,15 +38,18 @@ export class ProjectDeleteDialogComponent implements OnInit, OnDestroy {
 
                                     // update the project list array in app component
                                     // Event emitter concept or subscribe observable in project service
-                                
+                                    this.projectService.removeFromProjectList(id);
+                                    this.projectService.updateSelectedProject();
+
                                     // update the selectedProject in projectService
                                     // redirect to detail page of selectedProject
+                                    this.router.navigate(['/project/detail/', this.projectService.selectedProject.id]);
                                 }
                             ); 
     }
 
     onCancel(): void {
-        this.dialogRef.close();
+        this.deleteDialog.close();
     }
 
 }

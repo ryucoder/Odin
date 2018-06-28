@@ -46,7 +46,7 @@ export class ProjectSettingComponent implements OnInit, OnDestroy {
         this.renameSub = dialogRef.afterClosed()
                             .subscribe(
                                 result => {
-                                    console.log('The dialog was closed');
+                                    console.log('Rename dialog was closed.');
                                     console.log(result);
                                 },
                             );
@@ -54,14 +54,14 @@ export class ProjectSettingComponent implements OnInit, OnDestroy {
 
     openDeleteDialog() {
 
-        let dialogRef = this.dialog.open(ProjectDeleteDialogComponent, {
+        let deleteDialog = this.dialog.open(ProjectDeleteDialogComponent, {
             width: '450px',
         });
 
-        this.deleteSub = dialogRef.afterClosed()
+        this.deleteSub = deleteDialog.afterClosed()
                             .subscribe(
                                 result => {
-                                    console.log('The dialog was closed');
+                                    console.log('Delete dialog was closed.');
                                     console.log(result);
                                 },
                             );
