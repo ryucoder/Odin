@@ -38,12 +38,12 @@ export class ProjectSettingComponent implements OnInit, OnDestroy {
     }
 
     openRenameDialog() {
-        let dialogRef = this.dialog.open(ProjectRenameDialogComponent, {
+        let renameDialog = this.dialog.open(ProjectRenameDialogComponent, {
             width: '450px',
             data: { isEdit: this.isEdit, isCreate: this.isCreate }
         });
 
-        this.renameSub = dialogRef.afterClosed()
+        this.renameSub = renameDialog.afterClosed()
                             .subscribe(
                                 result => {
                                     console.log('Rename dialog was closed.');

@@ -3,7 +3,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ProjectService } from './project/project.service';
 import { ProjectRenameDialogComponent } from './project/project-setting/project-rename-dialog/project-rename-dialog.component';
 
-import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+import { MatDialog } from '@angular/material';
 
 
 @Component({
