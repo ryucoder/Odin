@@ -25,32 +25,26 @@ export class AppComponent implements OnInit, OnDestroy {
         this.projectServiceSub = this.projectService.getProjectList()
                                         .subscribe(
                                             data => {
-                                                this.projectList = data;
-                                                console.log('\n');
-                                                console.log(data);
-                                                console.log('\n');
+                                                this.projectService.projectList = data;
+                                                // console.log('\n');
+                                                // console.log(this.projectService.projectList);
+                                                // console.log('\n');
                                                 
-                                                this.projectService.selectedProject = this.projectList[0];
-                                                console.log(this.projectService.selectedProject);
-                                                console.log('\n');
+                                                this.projectService.updateSelectedProject();
+                                                // console.log(this.projectService.selectedProject);
+                                                // console.log('\n');
                                             },
-                                            error => console.log("My Error " + error),
+                                            error => console.log("My Error " + ""),
                                             () => {
                                                 console.log('completed');
                                             }
                                         );
-                                        
-        // not working from here, find out why
-        // this.selectedProject = this.projectList[0]; 
     }
 
     ngOnDestroy() {
         this.projectServiceSub.unsubscribe();
     }
 
-    updateSelectedProject(project) {
-        this.projectService.selectedProject = project;
-    }
 
     openCreateDialog() {
         let dialogRef = this.dialog.open(ProjectRenameDialogComponent, {

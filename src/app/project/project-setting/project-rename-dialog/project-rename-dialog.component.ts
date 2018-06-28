@@ -70,7 +70,7 @@ export class ProjectRenameDialogComponent implements OnInit, OnDestroy {
                                     // redirect to list page
                                     this.projectCreateForm.reset();
                                 },
-                                error => console.log("Create Project Error : " + error);
+                                error => console.log("Create Project Error : " + error),
                                 () => {
                                     this.isCreated = true;
                                 }

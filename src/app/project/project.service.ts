@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 // import 'rxjs/add/operator/do';
 // import 'rxjs/add/operator/catch';
 // import 'rxjs/add/operator/throw';
-import { do, catchError, retry } from 'rxjs/operators';
+import {catchError, retry } from 'rxjs/operators';
 
 
 @Injectable({
@@ -12,6 +12,7 @@ import { do, catchError, retry } from 'rxjs/operators';
 })
 export class ProjectService {
 
+    projectList = undefined;
     selectedProject = undefined;
     
     project_create_url = 'api/project/create';
@@ -25,7 +26,6 @@ export class ProjectService {
     createProject(name): Observable<any> {
         return this.http.post(this.project_create_url + '/', { name: name });
     }
-
 
     getProjectList() {
         return this.http.get(this.project_list_url + '/')
@@ -54,4 +54,14 @@ export class ProjectService {
     deleteProject(id) {
         return this.http.delete(this.project_delete_url + '/' + id + '/');
     }
+
+    updateSelectedProject() {
+        if (this.projectList) {
+            this.selectedProject = this.projectList[0];
+        } else {
+            // get it from server
+        }
+    }
+
+
 }

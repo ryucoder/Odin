@@ -21,7 +21,7 @@
                         </button>
                 
                 <mat-list>
-                    <mat-list-item *ngFor="let project of projectList" 
+                    <mat-list-item *ngFor="let project of projectService.projectList" 
                                     > 
                         <a title="Project Detail" 
                                 [routerLink]="['project/detail', project.id]">
