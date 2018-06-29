@@ -59,7 +59,8 @@ export class ProjectService {
         if (this.projectList) {
             this.selectedProject = this.projectList[0];
         } else {
-            // get it from server
+            // get list from server
+            // if empty list then show empty projects message
         }
     }
 
@@ -67,7 +68,7 @@ export class ProjectService {
         console.log('\n');
         console.log(id);
         console.log('\n');
-        
+
         for(var i=0; i <= this.projectList.length; i++) {
             
             console.log('\n');

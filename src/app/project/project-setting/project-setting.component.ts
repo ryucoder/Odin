@@ -17,8 +17,8 @@ export class ProjectSettingComponent implements OnInit, OnDestroy {
     isCreate = false;
     isEdit = true;
     
-    renameSub = undefined;
-    deleteSub = undefined;
+    renameDialogSub = undefined;
+    deleteDialogSub = undefined;
 
     constructor(private projectService: ProjectService,
                 public dialog: MatDialog ) { }
@@ -27,12 +27,12 @@ export class ProjectSettingComponent implements OnInit, OnDestroy {
 
     ngOnDestroy() {
 
-        if (this.renameSub) {
-            this.renameSub.unsubscribe();
+        if (this.renameDialogSub) {
+            this.renameDialogSub.unsubscribe();
         }
 
-        if (this.deleteSub) {
-            this.deleteSub.unsubscribe();
+        if (this.deleteDialogSub) {
+            this.deleteDialogSub.unsubscribe();
         }
 
     }
@@ -43,7 +43,7 @@ export class ProjectSettingComponent implements OnInit, OnDestroy {
             data: { isEdit: this.isEdit, isCreate: this.isCreate }
         });
 
-        this.renameSub = renameDialog.afterClosed()
+        this.renameDialogSub = renameDialog.afterClosed()
                             .subscribe(
                                 result => {
                                     console.log('Rename dialog was closed.');
@@ -58,7 +58,7 @@ export class ProjectSettingComponent implements OnInit, OnDestroy {
             width: '450px',
         });
 
-        this.deleteSub = deleteDialog.afterClosed()
+        this.deleteDialogSub = deleteDialog.afterClosed()
                             .subscribe(
                                 result => {
                                     console.log('Delete dialog was closed.');
