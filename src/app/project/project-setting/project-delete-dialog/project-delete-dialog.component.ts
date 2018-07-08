@@ -37,13 +37,15 @@ export class ProjectDeleteDialogComponent implements OnInit, OnDestroy {
                                     this.onCancel();
 
                                     // update the project list array in app component
-                                    // Event emitter concept or subscribe observable in project service
                                     this.projectService.removeFromProjectList(id);
-                                    this.projectService.updateSelectedProject();
 
                                     // update the selectedProject in projectService
+                                    this.projectService.updateSelectedProject();
+
                                     // redirect to detail page of selectedProject
                                     this.router.navigate(['/project/detail/', this.projectService.selectedProject.id]);
+
+                                    // show tooltip to the user that project has been deleted
                                 }
                             ); 
     }

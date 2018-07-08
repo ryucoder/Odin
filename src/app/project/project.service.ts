@@ -70,16 +70,11 @@ export class ProjectService {
         console.log('\n');
 
         for(var i=0; i <= this.projectList.length; i++) {
-            
-            console.log('\n');
-            console.log("Value of i is : " + i);
-            console.log('\n');
-
             if (id == this.projectList[i].id) {
-                // remove from the list
+                this.projectList.splice(i, 1) // remove one element from the array
             }
-            
         }
+
     }
 
 
