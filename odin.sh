@@ -1,3 +1,10 @@
+# This script automates starting terminals in the respective folders and running theirs servers
+# This script opens 4 tabs in the kde konsole terminal of Kubuntu 18.04 LTS
+# 2 tabs for Angular and 2 for Django
+# In one tab of Angular and Django, their respective servers will be run 
+# In the remaining tabs their respective folders will be opened.
+# It is not tested on other OS
+
 
 ANGULAR="~/Desktop/Projects/Odin-angular"
 DJANGO="~/Desktop/Projects/Odin-django"

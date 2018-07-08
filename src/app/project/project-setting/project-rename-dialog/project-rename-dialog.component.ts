@@ -66,6 +66,7 @@ export class ProjectRenameDialogComponent implements OnInit, OnDestroy {
             // Also show the reason for failure and the steps to fix it.
         }
         
+
     }
 
     updateProject() {
