@@ -65,17 +65,23 @@ export class ProjectService {
     }
 
     removeFromProjectList(id) {
-        console.log('\n');
-        console.log(id);
-        console.log('\n');
 
-        for(var i=0; i <= this.projectList.length; i++) {
+        for(var i = 0; i < this.projectList.length; i++) {
             if (id == this.projectList[i].id) {
-                this.projectList.splice(i, 1) // remove one element from the array
+                this.projectList.splice(i, 1); // remove one element from the array
             }
         }
 
     }
 
+    updateProjectList() {
+
+        for (var i = 0; i < this.projectList.length; i++) {
+            if (this.selectedProject.id == this.projectList[i].id) {
+                this.projectList[i].name = this.selectedProject.name; // rename the entry in the projectlist          }
+            }
+        }
+
+    }
 
 }

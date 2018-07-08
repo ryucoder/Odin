@@ -13,7 +13,7 @@ import { ProjectService } from '../../project.service';
 export class ProjectRenameDialogComponent implements OnInit, OnDestroy {
 
     createSub = undefined;
-    updateSub = undefined;s
+    updateSub = undefined;
 
     projectCreateForm = undefined;
 
@@ -70,11 +70,29 @@ export class ProjectRenameDialogComponent implements OnInit, OnDestroy {
     }
 
     updateProject() {
+        console.log("\n");
+        console.log(this.projectService.selectedProject);
+        console.log("\n");
+        console.log(this.projectCreateForm.controls.projectName.value);
+        console.log(this.projectService.selectedProject.id);
+        
+        let id = this.projectService.selectedProject.id;
+        let name = this.projectCreateForm.controls.projectName.value;
 
-        this.updateSub = this.projectService.updateProject(3, "dragon")
+        this.updateSub = this.projectService.updateProject(id, name)
                             .subscribe(
-                                data => {
-                                    console.log("DONE");
+                                data => {                                    
+                                    // show tooltip to user that project is renamed.
+
+                                    // update projectlist 
+                                    this.projectService.updateProjectList();
+
+                                    // update selected project
+                                    this.projectService.selectedProject.name = name;
+
+                                    this.createEditDialog.close();
+
+                                    console.log("Project was renamed.");
                                 }
                             );
 

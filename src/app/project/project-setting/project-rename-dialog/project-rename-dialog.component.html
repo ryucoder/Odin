@@ -4,17 +4,17 @@
     <mat-divider> </mat-divider>            
     
     <div>
-        <form>
+        <form novalidate [formGroup]="projectCreateForm" (ngSubmit)="updateProject()">
             <div mat-dialog-content>
                 <p>Choose a new name for the project</p>
                 <mat-form-field style="width: 100%;">
-                    <input matInput placeholder="Type new name here" name="name" [(ngModel)]="data.animal">
+                    <input matInput placeholder="Type new name here" formControlName="projectName">
                 </mat-form-field>
             </div>
 
             <div mat-dialog-actions>
-                <button mat-raised-button color="accent" (click)="updateProject()">Rename</button>
-                <button mat-raised-button color="basic" (click)="onCancel()" cdkFocusInitial>Cancel</button>
+                <button mat-raised-button color="accent" type="submit">Rename</button>
+                <button mat-raised-button color="basic" (click)="onCancel()">Cancel</button>
             </div>
         </form>
     </div>
