@@ -43,9 +43,6 @@ export class ProjectRenameDialogComponent implements OnInit, OnDestroy {
     }
 
     onCreateProject() {
-        console.log("\n");
-        console.log(this.projectCreateForm.controls.projectName.value);
-        console.log("\n");
         
         if(this.projectCreateForm.dirty && this.projectCreateForm.valid) {
 
@@ -70,12 +67,6 @@ export class ProjectRenameDialogComponent implements OnInit, OnDestroy {
     }
 
     updateProject() {
-        console.log("\n");
-        console.log(this.projectService.selectedProject);
-        console.log("\n");
-        console.log(this.projectCreateForm.controls.projectName.value);
-        console.log(this.projectService.selectedProject.id);
-        
         let id = this.projectService.selectedProject.id;
         let name = this.projectCreateForm.controls.projectName.value;
 
@@ -84,12 +75,13 @@ export class ProjectRenameDialogComponent implements OnInit, OnDestroy {
                                 data => {                                    
                                     // show tooltip to user that project is renamed.
 
-                                    // update projectlist 
-                                    this.projectService.updateProjectList();
-
                                     // update selected project
                                     this.projectService.selectedProject.name = name;
 
+                                    // update projectlist 
+                                    this.projectService.updateProjectList();
+
+                                    // close the dialog box
                                     this.createEditDialog.close();
 
                                     console.log("Project was renamed.");
