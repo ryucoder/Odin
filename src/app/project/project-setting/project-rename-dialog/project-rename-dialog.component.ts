@@ -1,5 +1,5 @@
 import { Component, Inject, OnInit, OnDestroy } from '@angular/core';
-import { FormGroup, FormControl, FormBuilder } from '@angular/forms';
+import { FormBuilder } from '@angular/forms';
 
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 
@@ -12,32 +12,21 @@ import { ProjectService } from '../../project.service';
 })
 export class ProjectRenameDialogComponent implements OnInit, OnDestroy {
 
-    isCreated = false;
     createSub = undefined;
-    updateSub = undefined;
+    updateSub = undefined;s
 
-    projectCreateError = undefined;
     projectCreateForm = undefined;
 
     constructor(private projectService: ProjectService,
         private formBuilder: FormBuilder,
-        public dialogRef: MatDialogRef<ProjectRenameDialogComponent>,
+        public createEditDialog: MatDialogRef<ProjectRenameDialogComponent>,
         @Inject(MAT_DIALOG_DATA) public data: any) { }
         
     ngOnInit() {
-        // console.log(this.data);
-
-        this.projectCreateForm = new FormGroup({
-            projectName: new FormControl(),
-            // projectName: new FormControl("RyuCoder"),
-        });
         
         this.projectCreateForm = this.formBuilder.group({
-            projectName: [{ value: "Mr. Turbo", disabled: false}, []]
+            projectName: [{ value: "", disabled: false}, []]
         });
-
-
-
 
     }
 
@@ -65,22 +54,17 @@ export class ProjectRenameDialogComponent implements OnInit, OnDestroy {
             this.createSub = this.projectService.createProject(this.projectCreateForm.controls.projectName.value)
                             .subscribe(
                                 data => {
-                                    // console.log(data);
                                     // show tooltip to user that new project is created.
-                                    // redirect to list page
-                                    this.projectCreateForm.reset();
+                                    this.projectService.projectList.push(data);
+                                    this.createEditDialog.close();
                                 },
                                 error => console.log("Create Project Error : " + error),
-                                () => {
-                                    this.isCreated = true;
-                                }
                             );
 
         } else {
-            this.projectCreateError = true;
-            // Show Error Tooltip of popup
+            // show tooltip that project creation has failed.
+            // Also show the reason for failure and the steps to fix it.
         }
-
         
     }
 
@@ -96,7 +80,7 @@ export class ProjectRenameDialogComponent implements OnInit, OnDestroy {
     }
 
     onCancel(): void {
-        this.dialogRef.close();
+        this.createEditDialog.close();
     }
 
 }

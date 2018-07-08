@@ -47,12 +47,12 @@ export class AppComponent implements OnInit, OnDestroy {
 
 
     openCreateDialog() {
-        let dialogRef = this.dialog.open(ProjectRenameDialogComponent, {
+        let createDialog = this.dialog.open(ProjectRenameDialogComponent, {
             width: '450px',
             data: { isEdit: this.isEdit, isCreate: this.isCreate }
         });
 
-        dialogRef.afterClosed()
+        createDialog.afterClosed()
             .subscribe(
                 result => {
                     console.log('The dialog was closed');

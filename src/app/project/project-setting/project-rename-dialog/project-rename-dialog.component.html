@@ -35,14 +35,9 @@
                     </mat-form-field>
             </div>
     
-            <div>
-                <h1> {{ projectCreateForm.controls.projectName.value }} </h1>
-                <h1> Form Valid : {{ projectCreateForm.valid }} </h1>
-            </div>
             <div mat-dialog-actions>
-                <button mat-raised-button color="primary" *ngIf="!isCreated">Create</button>
-                <button mat-raised-button color="primary" *ngIf="isCreated" [mat-dialog-close]="data.animal">Close</button>
-                <button mat-raised-button color="basic" *ngIf="!isCreated" (click)="onCancel()" cdkFocusInitial>Cancel</button>
+                <button mat-raised-button color="primary">Create</button>
+                <button mat-raised-button color="basic" (click)="onCancel()" >Cancel</button>
             </div>
         </form>
     </div>
