@@ -1,7 +1,7 @@
 # Odin
 Modern bugtracker made with latest technologies
 
-Techs Used -
+
 Front End -
 1. Angular 6
 2. Angular Material 6
